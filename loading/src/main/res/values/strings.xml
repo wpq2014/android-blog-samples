@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">loading</string>
+
+    <string name="loading_message">加载中</string>
+    <string name="error_message">加载失败，点击重试~</string>
+    <string name="error_retry">重新加载</string>
+</resources>
