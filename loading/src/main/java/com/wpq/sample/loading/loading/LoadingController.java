@@ -2,6 +2,7 @@ package com.wpq.sample.loading.loading;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -53,6 +54,12 @@ public class LoadingController implements LoadingInterface {
     private int currentViewIndex;
     /** {@link #loadingTargetView} 的LayoutParams */
     private ViewGroup.LayoutParams params;
+
+    private View loadingView;
+    private AnimationDrawable loadingAnimationDrawable;
+    private View networkErrorView;
+    private View errorView;
+    private View emptyView;
 
     private LoadingController(Builder builder) {
         context = builder.context;
@@ -107,13 +114,24 @@ public class LoadingController implements LoadingInterface {
             }
             parentView.removeViewAt(currentViewIndex);
             parentView.addView(view, currentViewIndex, params);
+            if (loadingAnimationDrawable != null) {
+                if (view == loadingView) {
+                    loadingAnimationDrawable.start();
+                } else {
+                    loadingAnimationDrawable.stop();
+                }
+            }
         }
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void showLoading() {
-        @SuppressLint("InflateParams")
-        View loadingView = inflater.inflate(R.layout.loading, null);
+        if (loadingView != null) {
+            showView(loadingView);
+            return;
+        }
+        loadingView = inflater.inflate(R.layout.loading, null);
         ProgressBar pbLoading = (ProgressBar) loadingView.findViewById(R.id.pb_loading);
         ImageView ivLoading = (ImageView) loadingView.findViewById(R.id.iv_loading);
         TextView tvLoadingMessage = (TextView) loadingView.findViewById(R.id.tv_loadingMessage);
@@ -124,9 +142,17 @@ public class LoadingController implements LoadingInterface {
         if (loadingImageResource != 0) {
             ivLoading.setVisibility(View.VISIBLE);
             ivLoading.setImageResource(loadingImageResource);
+            Drawable imageDrawable = ivLoading.getDrawable();
+            if (imageDrawable instanceof AnimationDrawable) {
+                loadingAnimationDrawable = (AnimationDrawable) imageDrawable;
+            }
         } else if (loadingImageDrawable != null) {
             ivLoading.setVisibility(View.VISIBLE);
             ivLoading.setImageDrawable(loadingImageDrawable);
+            Drawable imageDrawable = ivLoading.getDrawable();
+            if (imageDrawable instanceof AnimationDrawable) {
+                loadingAnimationDrawable = (AnimationDrawable) imageDrawable;
+            }
         } else {
             pbLoading.setVisibility(View.VISIBLE);
         }
@@ -139,11 +165,18 @@ public class LoadingController implements LoadingInterface {
         showView(loadingView);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void showNetworkError() {
-        @SuppressLint("InflateParams")
-        View networkErrorView = inflater.inflate(R.layout.error, null);
+        if (networkErrorView != null) {
+            showView(networkErrorView);
+            return;
+        }
+        networkErrorView = inflater.inflate(R.layout.error, null);
+        TextView tvNetworkErrorMessage = (TextView) networkErrorView.findViewById(R.id.tv_errorMessage);
         Button btnRetry = (Button) networkErrorView.findViewById(R.id.btn_retry);
+
+        tvNetworkErrorMessage.setText(context.getResources().getString(R.string.LoadingController_network_error_message));
 
         if (!TextUtils.isEmpty(networkErrorRetryText)) {
             btnRetry.setText(networkErrorRetryText);
@@ -160,15 +193,18 @@ public class LoadingController implements LoadingInterface {
         showView(networkErrorView);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void showError() {
-        @SuppressLint("InflateParams")
-        View errorView = inflater.inflate(R.layout.error, null);
+        if (errorView != null) {
+            showView(errorView);
+            return;
+        }
+        errorView = inflater.inflate(R.layout.error, null);
         ImageView ivError = (ImageView) errorView.findViewById(R.id.iv_error);
         TextView tvErrorMessage = (TextView) errorView.findViewById(R.id.tv_errorMessage);
         Button btnRetry = (Button) errorView.findViewById(R.id.btn_retry);
         ivError.setVisibility(View.GONE);
-        tvErrorMessage.setVisibility(View.GONE);
 
         if (errorImageResoruce != 0){
             ivError.setVisibility(View.VISIBLE);
@@ -179,8 +215,9 @@ public class LoadingController implements LoadingInterface {
         }
 
         if (!TextUtils.isEmpty(errorMessage)) {
-            tvErrorMessage.setVisibility(View.VISIBLE);
             tvErrorMessage.setText(errorMessage);
+        } else {
+            tvErrorMessage.setText(context.getResources().getString(R.string.LoadingController_error_message));
         }
 
         if (!TextUtils.isEmpty(errorRetryText)) {
@@ -198,10 +235,14 @@ public class LoadingController implements LoadingInterface {
         showView(errorView);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void showEmpty() {
-        @SuppressLint("InflateParams")
-        View emptyView = inflater.inflate(R.layout.error, null);
+        if (emptyView != null) {
+            showView(emptyView);
+            return;
+        }
+        emptyView = inflater.inflate(R.layout.error, null);
         ImageView ivEmpty = (ImageView) emptyView.findViewById(R.id.iv_error);
         TextView tvEmptyMessage = (TextView) emptyView.findViewById(R.id.tv_errorMessage);
         Button btnTodo = (Button) emptyView.findViewById(R.id.btn_retry);

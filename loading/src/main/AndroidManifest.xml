@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".SingleLoadingActivity" android:label="@string/single_loading"/>
+        <activity android:name=".MultiLoadingActivity" android:label="@string/multi_loading"/>
     </application>
 
 </manifest>

@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">loading</string>
 
-    <string name="loading_message">加载中</string>
-    <string name="error_message">加载失败，点击重试~</string>
-    <string name="error_retry">重新加载</string>
+    <string name="LoadingController_loading_message">加载中</string>
+    <string name="LoadingController_network_error_message">加载失败，请检查网络连接~</string>
+    <string name="LoadingController_error_message">加载失败，点击重试~</string>
+    <string name="LoadingController_error_retry">重新加载</string>
+
+    <!-- SingleLoadingActivity -->
+    <string name="single_loading">一个Loading</string>
+    <string name="multi_loading">多个Loading</string>
 </resources>
