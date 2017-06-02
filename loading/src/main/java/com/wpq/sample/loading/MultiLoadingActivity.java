@@ -51,7 +51,7 @@ public class MultiLoadingActivity extends AppCompatActivity {
 
     private void requestVideo() {
         videoLoadingController = new LoadingController.Builder(this, imageView)
-                .setOnNetworkErrorRetryClickListener(new LoadingInterface.OnClickListener() {
+                .setOnErrorRetryClickListener(new LoadingInterface.OnClickListener() {
                     @Override
                     public void onClick() {
                         refreshVideo(CONTENT);
@@ -68,7 +68,7 @@ public class MultiLoadingActivity extends AppCompatActivity {
             public void run() {
                 switch (target) {
                     case NETWORK_ERROR:
-                        videoLoadingController.showNetworkError();
+                        videoLoadingController.showError();
                         break;
                     case CONTENT:
                         videoLoadingController.dismissLoading();
@@ -82,7 +82,7 @@ public class MultiLoadingActivity extends AppCompatActivity {
     private void requestList() {
         listLoadingController = new LoadingController.Builder(this, recyclerView)
                 .setErrorImageResoruce(R.drawable.error)
-                .setOnErrorRetryClickListener("点我重试", new LoadingInterface.OnClickListener() {
+                .setOnNetworkErrorRetryClickListener(new LoadingInterface.OnClickListener() {
                     @Override
                     public void onClick() {
                         refreshList(EMPTY);
@@ -106,7 +106,7 @@ public class MultiLoadingActivity extends AppCompatActivity {
             public void run() {
                 switch (target) {
                     case ERROR:
-                        listLoadingController.showError();
+                        listLoadingController.showNetworkError();
                         break;
                     case EMPTY:
                         listLoadingController.showEmpty();
