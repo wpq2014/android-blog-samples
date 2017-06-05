@@ -2,3 +2,4 @@
 #### [简书](http://www.jianshu.com/u/fca46862a3b2)博客文章的源码
 ## 文章列表
 * [实际项目中EventBus的封装](http://www.jianshu.com/p/bf5c431872bf)
+* [Android 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803)
