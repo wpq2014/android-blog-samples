@@ -5,4 +5,4 @@
 * [Android 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803)
 ## 相关截图
 * [Android 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803) <br/>
-<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/single.gif" width="280px"/>&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/multi.gif" width="280px"/>
+<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/single.gif" width="280px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/multi.gif" width="280px"/>
