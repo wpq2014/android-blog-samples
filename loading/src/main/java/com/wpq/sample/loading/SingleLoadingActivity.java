@@ -84,6 +84,6 @@ public class SingleLoadingActivity extends AppCompatActivity {
                         break;
                 }
             }
-        }, 3000);
+        }, 1000);
     }
 }

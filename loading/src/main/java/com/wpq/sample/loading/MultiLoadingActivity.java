@@ -76,7 +76,7 @@ public class MultiLoadingActivity extends AppCompatActivity {
                         break;
                 }
             }
-        }, 3000);
+        }, 1500);
     }
 
     private void requestList() {
@@ -113,6 +113,6 @@ public class MultiLoadingActivity extends AppCompatActivity {
                         break;
                 }
             }
-        }, 3000);
+        }, 1500);
     }
 }
