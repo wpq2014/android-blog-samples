@@ -204,13 +204,11 @@ public class LoadingController implements LoadingInterface {
         ImageView ivError = (ImageView) errorView.findViewById(R.id.iv_error);
         TextView tvErrorMessage = (TextView) errorView.findViewById(R.id.tv_errorMessage);
         Button btnRetry = (Button) errorView.findViewById(R.id.btn_retry);
-        ivError.setVisibility(View.GONE);
 
+        ivError.setImageResource(R.drawable.error);
         if (errorImageResoruce != 0){
-            ivError.setVisibility(View.VISIBLE);
             ivError.setImageResource(errorImageResoruce);
         } else if (errorImageDrawable != null) {
-            ivError.setVisibility(View.VISIBLE);
             ivError.setImageDrawable(errorImageDrawable);
         }
 
