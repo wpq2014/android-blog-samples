@@ -9,6 +9,7 @@
 
   <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/single.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/multi.gif" width="320px"/>
 
+
 * [Android项目实战 ProgressDialog自定义和封装过程](http://www.jianshu.com/p/3fd52a212c6d) <br/>
 
   <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/系统自带的ProgressDialog.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/封装系统自带的ProgressDialog.gif" width="320px"/> <br/>  
