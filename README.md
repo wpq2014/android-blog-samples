@@ -11,5 +11,5 @@
 
 * [Android项目实战 ProgressDialog自定义和封装过程]() <br/>
 
-<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/系统自带的ProgressDialog.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/封装系统自带的ProgressDialog.gif" width="320px"/> <br/>  
-<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/自定义ProgressDialog.gif" width="320px"/>
+  <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/系统自带的ProgressDialog.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/封装系统自带的ProgressDialog.gif" width="320px"/> <br/>  
+  <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/自定义ProgressDialog.gif" width="320px"/>
