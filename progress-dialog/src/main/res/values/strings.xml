@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">progress-dialog</string>
+    <string name="normal_progress_dialog">系统自带的ProgressDialog</string>
+    <string name="normal_progress_dialog_util">封装系统自带的ProgressDialog</string>
+    <string name="custom_progress_dialog_util">自定义ProgressDialog</string>
+</resources>

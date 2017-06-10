@@ -1,1 +1,1 @@
-include ':app', ':eventbus', ':loading'
+include ':app', ':eventbus', ':loading', ':progress-dialog'
