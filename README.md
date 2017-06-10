@@ -7,6 +7,6 @@
 ## 相关截图
 * [Android 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803) <br/>
 
-<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/single.gif" width="320px"/>&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/multi.gif" width="320px"/>
+  <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/single.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/multi.gif" width="320px"/>
 
 * [Android项目实战 ProgressDialog自定义和封装过程]() <br/>
