@@ -54,7 +54,7 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
     }
 
     public static synchronized void showLoading(Context context) {
-        showLoading(context, "dialog_custom_progress...");
+        showLoading(context, "loading...");
     }
 
     public static synchronized void showLoading(Context context, CharSequence message) {

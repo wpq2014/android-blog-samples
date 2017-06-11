@@ -41,7 +41,7 @@ public class NormalProgressDialog extends ProgressDialog implements DialogInterf
     }
 
     public static synchronized void showLoading(Context context) {
-        showLoading(context, "dialog_custom_progress...");
+        showLoading(context, "loading...");
     }
 
     public static synchronized void showLoading(Context context, CharSequence message) {
