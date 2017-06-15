@@ -80,6 +80,19 @@ public class LoadingController implements LoadingInterface {
         emptyTodoText = builder.emptyTodoText;
         onEmptyTodoClickListener = builder.onEmptyTodoClickListener;
 
+        if (builder.customLoadingView != null) {
+            loadingView = builder.customLoadingView;
+        }
+        if (builder.customNetworkErrorView != null) {
+            networkErrorView = builder.customNetworkErrorView;
+        }
+        if (builder.customErrorView != null) {
+            errorView = builder.customErrorView;
+        }
+        if (builder.customEmptyView != null) {
+            emptyView = builder.customEmptyView;
+        }
+
         init();
     }
 
@@ -286,20 +299,24 @@ public class LoadingController implements LoadingInterface {
 
         private Context context;
         private View loadingTargetView;
-        // loading
+        // qlk_loading
         private int loadingImageResource;
         private Drawable loadingImageDrawable;
         private String loadingMessage;
-        // network error
+        private View customLoadingView;
+        // network qlk_loading_result
+        private View customNetworkErrorView;
 
-        // normal error
+        // normal qlk_loading_result
         private int errorImageResoruce;
         private Drawable errorImageDrawable;
         private String errorMessage;
+        private View customErrorView;
         // empty
         private int emptyViewImageResource;
         private Drawable emptyViewImageDrawable;
         private String emptyMessage;
+        private View customEmptyView;
 
         // listener
         private String networkErrorRetryText;
@@ -329,6 +346,26 @@ public class LoadingController implements LoadingInterface {
             return this;
         }
 
+        /**
+         * 自定义loadingView
+         * @param loadingView view for loading
+         * @return this Builder
+         */
+        public Builder setLoadingView(View loadingView) {
+            this.customLoadingView = loadingView;
+            return this;
+        }
+
+        /**
+         * 自定义networkErrorView
+         * @param networkErrorView view for networkError
+         * @return this Builder
+         */
+        public Builder setNetworkErrorView(View networkErrorView) {
+            this.customNetworkErrorView = networkErrorView;
+            return this;
+        }
+
         public Builder setErrorImageResoruce(int errorImageResoruce) {
             this.errorImageResoruce = errorImageResoruce;
             return this;
@@ -344,6 +381,16 @@ public class LoadingController implements LoadingInterface {
             return this;
         }
 
+        /**
+         * 自定义errorView
+         * @param errorView view for error
+         * @return this Builder
+         */
+        public Builder setErrorView(View errorView) {
+            this.customErrorView = errorView;
+            return this;
+        }
+
         public Builder setEmptyViewImageResource(int emptyViewImageResource) {
             this.emptyViewImageResource = emptyViewImageResource;
             return this;
@@ -356,6 +403,16 @@ public class LoadingController implements LoadingInterface {
 
         public Builder setEmptyMessage(String emptyMessage) {
             this.emptyMessage = emptyMessage;
+            return this;
+        }
+
+        /**
+         * 自定义emptyView
+         * @param emptyView view for empty
+         * @return this Builder
+         */
+        public Builder setEmptyView(View emptyView) {
+            this.customEmptyView = emptyView;
             return this;
         }
 
