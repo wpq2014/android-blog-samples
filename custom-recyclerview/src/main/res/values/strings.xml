@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">custom-recyclerview</string>
+    <string name="headerAndFooter">headerAndFooter</string>
+    <string name="LinearLayoutManager">LinearLayoutManager</string>
+    <string name="GridLayoutManager">GridLayoutManager</string>
+    <string name="StaggeredGridLayoutManager">StaggeredGridLayoutManager</string>
+
+    <!-- LoadMoreView -->
+    <string name="LoadMoreView_loadingHint">加载中...</string>
+    <string name="LoadMoreView_completeHint">查看更多</string>
+    <string name="LoadMoreView_errorHint">加载失败，点击重新加载</string>
+    <string name="LoadMoreView_noMoreHint">没有更多了~</string>
+
+    <!-- menu action -->
+    <string name="action_settings">设置</string>
+    <string name="action_more_than_one_page">一页以上</string>
+    <string name="action_not_enough_one_page">不足一页</string>
+
+    <string-array name="main_item">
+        <item>Header And Footer</item>
+        <item>LinearLayoutManager</item>
+        <item>GridLayoutManager</item>
+        <item>StaggeredGridLayoutManager</item>
+    </string-array>
+
+    <!-- header and footer -->
+    <string name="action_add_data">add data</string>
+    <string name="action_add_header">add header</string>
+    <string name="action_add_footer">add footer</string>
+    <string name="action_remove_header">remove header</string>
+    <string name="action_remove_footer">remove footer</string>
+
+    <integer name="column_2">2</integer>
+    <integer name="column_1">1</integer>
+</resources>

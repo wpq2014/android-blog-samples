@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_addData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/action_add_data"
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_green_dark"/>
+
+        <Button
+            android:id="@+id/btn_addHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/action_add_header"
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_green_dark"/>
+
+        <Button
+            android:id="@+id/btn_addFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/action_add_footer"
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_green_dark"/>
+
+        <Button
+            android:id="@+id/btn_removeHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/action_remove_header"
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_red_dark"/>
+
+        <Button
+            android:id="@+id/btn_removeFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/action_remove_footer"
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_red_dark"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
