@@ -43,7 +43,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GridLayoutManagerActivity extends AppCompatActivity {
 
     public static final String TAG = GridLayoutManagerActivity.class.getSimpleName();
-    /** 分页设置每页9条 */
+    /** 分页设置每页7条 */
     public static final int PAGE_COUNT = 7;
 
     @BindView(R.id.ptrFrameLayout)
