@@ -21,7 +21,7 @@ public class StaggeredGridLayoutManagerAdapter extends BaseRecyclerAdapter<GanHu
 
     @Override
     protected int getLayoutId() {
-        return R.layout.item_gridlayoutmanager;
+        return R.layout.item_staggeredgridlayoutmanager;
     }
 
     @Override
