@@ -130,12 +130,14 @@ public class LinearLayoutManagerActivity extends AppCompatActivity {
 
                     if (isRefresh) {
                         mSwipeRefreshLayout.setRefreshing(false);
+                        mRecyclerView.scrollToPosition(0);
                         mList.clear();
                         mAdapter.notifyDataSetChanged();
                     }
                     mList.addAll(ganhuo.getResults());
 //                    mAdapter.notifyDataSetChanged();
-                    mAdapter.notifyItemRangeInserted(mRecyclerView.getHeadersCount() + mList.size(), ganhuo.getResults().size());
+                    mAdapter.notifyItemInserted(mRecyclerView.getHeadersCount() + mList.size());
+//                    mAdapter.notifyItemRangeInserted(mRecyclerView.getHeadersCount() + mList.size(), ganhuo.getResults().size());
                     if (mList.size() < PAGE_COUNT) {
                         mRecyclerView.noNeedToLoadMore();
                     } else if (ganhuo.getResults().size() < PAGE_COUNT) {

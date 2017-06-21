@@ -138,12 +138,14 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
 
                     if (isRefresh) {
                         mPtrFrameLayout.refreshComplete();
+                        mRecyclerView.scrollToPosition(0);
                         mList.clear();
                         mAdapter.notifyDataSetChanged();
                     }
                     mList.addAll(ganhuo.getResults());
 //                    mAdapter.notifyDataSetChanged();
-                    mAdapter.notifyItemRangeInserted(mList.size() + mRecyclerView.getHeadersCount(), ganhuo.getResults().size());
+                    mAdapter.notifyItemInserted(mRecyclerView.getHeadersCount() + mList.size());
+//                    mAdapter.notifyItemRangeInserted(mList.size() + mRecyclerView.getHeadersCount(), ganhuo.getResults().size());
                     if (mList.size() < PAGE_COUNT) {
                         mRecyclerView.noNeedToLoadMore();
                     } else if (ganhuo.getResults().size() < PAGE_COUNT) {

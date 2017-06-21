@@ -138,12 +138,15 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
 
                     if (isRefresh) {
                         mSwipeRefreshLayout.setRefreshing(false);
+                        // 滚动到头部，不加这个点OptionsMenu刷新时会出现顶部留白的问题
+                        mRecyclerView.scrollToPosition(0);
                         mList.clear();
                         mAdapter.notifyDataSetChanged();
                     }
                     mList.addAll(ganhuo.getResults());
 //                    mAdapter.notifyDataSetChanged();
-                    mAdapter.notifyItemRangeInserted(mList.size() + mRecyclerView.getHeadersCount(), ganhuo.getResults().size());
+                    mAdapter.notifyItemInserted(mList.size() + mRecyclerView.getHeadersCount());
+//                    mAdapter.notifyItemRangeInserted(mList.size() + mRecyclerView.getHeadersCount(), ganhuo.getResults().size());
                     if (mList.size() < PAGE_COUNT) {
                         mRecyclerView.noNeedToLoadMore();
                     } else if (ganhuo.getResults().size() < PAGE_COUNT) {
