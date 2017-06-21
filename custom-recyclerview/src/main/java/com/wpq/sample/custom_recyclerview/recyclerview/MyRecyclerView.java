@@ -54,7 +54,10 @@ public class MyRecyclerView extends RecyclerView {
 
     public void addHeaderView(@NonNull View headerView) {
         mHeaderViews.put(VIEW_TYPE_HEADER_INIT + mHeaderViews.size(), headerView);
-        mAdapterDataObserver.onChanged();
+        if (mWrapAdapter != null) {
+            mWrapAdapter.getInnerAdapter().notifyDataSetChanged();
+//            mWrapAdapter.getInnerAdapter().notifyItemInserted(mHeaderViews.size());
+        }
     }
 
     /**
@@ -67,14 +70,20 @@ public class MyRecyclerView extends RecyclerView {
             return;
         }
         mFooterViews.put(VIEW_TYPE_FOOTER_INIT + mFooterViews.size(), footerView);
-        mAdapterDataObserver.onChanged();
+        if (mWrapAdapter != null) {
+            // 最后一个position = mWrapAdapter.getItemCount() - 1，
+            // 新增一个FooterView的position = mWrapAdapter.getItemCount()
+            mWrapAdapter.getInnerAdapter().notifyDataSetChanged();
+//            mWrapAdapter.getInnerAdapter().notifyItemInserted(mWrapAdapter.getItemCount());
+        }
     }
 
     public void removeHeaderView(@NonNull View headerView) {
         for(int i = 0; i < mHeaderViews.size(); i++) {
             if (headerView.equals(mHeaderViews.valueAt(i))) {
                 mHeaderViews.removeAt(i);
-                mAdapterDataObserver.onChanged();
+                mWrapAdapter.getInnerAdapter().notifyDataSetChanged();
+//                mWrapAdapter.getInnerAdapter().notifyItemRemoved(i);
                 break;
             }
         }
@@ -84,7 +93,8 @@ public class MyRecyclerView extends RecyclerView {
         for (int i = 0; i < mFooterViews.size(); i++) {
             if (footerView.equals(mFooterViews.valueAt(i))) {
                 mFooterViews.removeAt(i);
-                mAdapterDataObserver.onChanged();
+                mWrapAdapter.getInnerAdapter().notifyDataSetChanged();
+//                mWrapAdapter.getInnerAdapter().notifyItemRemoved(mHeaderViews.size() + mWrapAdapter.getInnerItemCount() + i);
             }
         }
     }
@@ -192,7 +202,12 @@ public class MyRecyclerView extends RecyclerView {
             SCROLL_STATE_IDLE     = 0 ：静止,没有滚动
             SCROLL_STATE_DRAGGING = 1 ：正在被外部拖拽,一般为用户正在用手指滚动
             SCROLL_STATE_SETTLING = 2 ：自动滚动开始
-        */
+         */
+
+        /*
+            RecyclerView.canScrollVertically(1)的值表示是否能向上滚动，false表示已经滚动到底部
+            RecyclerView.canScrollVertically(-1)的值表示是否能向下滚动，false表示已经滚动到顶部
+         */
 
 //        Log.e(TAG, state + ", " + this.canScrollVertically(1));
         // 判断RecyclerView滚动到底部，参考：http://www.jianshu.com/p/c138055af5d2
@@ -301,18 +316,52 @@ public class MyRecyclerView extends RecyclerView {
             mInnerAdapter.onViewAttachedToWindow(holder);
         }
 
-        private boolean isHeader(int position) {
-            return position < getHeadersCount();
+        @Override
+        public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+            mInnerAdapter.onDetachedFromRecyclerView(recyclerView);
         }
 
-        private boolean isFooter(int position) {
-            return getFootersCount() > 0 && position >= getHeadersCount() + getInnerItemCount();
+        @Override
+        public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
+            //noinspection unchecked
+            mInnerAdapter.onViewDetachedFromWindow(holder);
         }
 
-        private boolean isLoadMore(int position) {
-            // 如果是加载更多 && 是最后一项，就是LoadMore
-            return loadMoreEnabled && position == getItemCount() - 1 && !noNeedToLoadMore;
+        @Override
+        public void onViewRecycled(RecyclerView.ViewHolder holder) {
+            //noinspection unchecked
+            mInnerAdapter.onViewRecycled(holder);
         }
+
+        @Override
+        public boolean onFailedToRecycleView(RecyclerView.ViewHolder holder) {
+            //noinspection unchecked
+            return mInnerAdapter.onFailedToRecycleView(holder);
+        }
+
+        @Override
+        public void unregisterAdapterDataObserver(AdapterDataObserver observer) {
+            mInnerAdapter.unregisterAdapterDataObserver(observer);
+        }
+
+        @Override
+        public void registerAdapterDataObserver(AdapterDataObserver observer) {
+            mInnerAdapter.registerAdapterDataObserver(observer);
+        }
+
+    }
+
+    public boolean isHeader(int position) {
+        return position < getHeadersCount();
+    }
+
+    public boolean isFooter(int position) {
+        return getFootersCount() > 0 && position >= getHeadersCount() + mWrapAdapter.getInnerItemCount();
+    }
+
+    public boolean isLoadMore(int position) {
+        // 如果是加载更多 && 是最后一项，就是LoadMore
+        return loadMoreEnabled && position == mWrapAdapter.getItemCount() - 1 && !noNeedToLoadMore;
     }
 
     private class DataObserver extends RecyclerView.AdapterDataObserver {
@@ -322,7 +371,33 @@ public class MyRecyclerView extends RecyclerView {
                 mWrapAdapter.notifyDataSetChanged();
             }
         }
-    };
+
+        @Override
+        public void onItemRangeInserted(int positionStart, int itemCount) {
+            mWrapAdapter.notifyItemRangeInserted(positionStart, itemCount);
+        }
+
+        @Override
+        public void onItemRangeChanged(int positionStart, int itemCount) {
+            mWrapAdapter.notifyItemRangeChanged(positionStart, itemCount);
+        }
+
+        @Override
+        public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
+            mWrapAdapter.notifyItemRangeChanged(positionStart, itemCount, payload);
+        }
+
+        @Override
+        public void onItemRangeRemoved(int positionStart, int itemCount) {
+            mWrapAdapter.notifyItemRangeRemoved(positionStart, itemCount);
+        }
+
+        @Override
+        public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+            mWrapAdapter.notifyItemMoved(fromPosition, toPosition);
+        }
+
+    }
 
     public void setOnLoadListener(OnLoadListener onLoadListener) {
         this.mOnLoadListener = onLoadListener;

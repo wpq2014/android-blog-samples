@@ -11,12 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.wpq.sample.custom_recyclerview.adapter.MainAdapter;
+import com.wpq.sample.custom_recyclerview.adapter.HeaderAndFooterAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
 import com.wpq.sample.custom_recyclerview.recyclerview.OnRecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +42,7 @@ public class HeaderAndFooterActivity extends AppCompatActivity {
     @BindView(R.id.btn_addData)
     Button mBtnAddData;
 
-    private MainAdapter mAdapter;
+    private HeaderAndFooterAdapter mAdapter;
     private List<String> mData = new ArrayList<>();
 
     private SparseArrayCompat<View> mHeaders = new SparseArrayCompat<>();
@@ -68,7 +69,7 @@ public class HeaderAndFooterActivity extends AppCompatActivity {
             }
         });
 
-        mAdapter = new MainAdapter(mData);
+        mAdapter = new HeaderAndFooterAdapter(mData);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -95,7 +96,8 @@ public class HeaderAndFooterActivity extends AppCompatActivity {
 
     private void addData() {
         mData.add(mData.size() + "");
-        mAdapter.notifyDataSetChanged();
+//        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyItemInserted(mRecyclerView.getHeadersCount() + mData.size());
     }
 
     private void addHeader() {
@@ -112,16 +114,18 @@ public class HeaderAndFooterActivity extends AppCompatActivity {
 
     private void removeHeader() {
         if (mHeaders.size() <= 0) return;
-        View lastHeader = mHeaders.valueAt(mHeaders.size() - 1);
-        mRecyclerView.removeHeaderView(lastHeader);
-        mHeaders.removeAt(mHeaders.size() - 1);
+        int headerIndex = new Random().nextInt(mHeaders.size());
+        View header = mHeaders.valueAt(headerIndex);
+        mRecyclerView.removeHeaderView(header);
+        mHeaders.removeAt(headerIndex);
     }
 
     private void removeFooter() {
         if (mFooters.size() <= 0) return;
-        View lastFooter = mFooters.valueAt(mFooters.size() - 1);
-        mRecyclerView.removeFooterView(lastFooter);
-        mFooters.removeAt(mFooters.size() - 1);
+        int footerIndex = new Random().nextInt(mFooters.size());
+        View footer = mFooters.valueAt(footerIndex);
+        mRecyclerView.removeFooterView(footer);
+        mFooters.removeAt(footerIndex);
     }
 
 }

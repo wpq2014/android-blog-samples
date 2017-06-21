@@ -36,10 +36,16 @@ dependencies {
 
     compile 'com.jakewharton:butterknife:8.6.0'
     apt 'com.jakewharton:butterknife-compiler:8.6.0' // 修改的地方 把annotationProcessor改为apt
+
     compile 'com.facebook.fresco:fresco:0.13.0'
+
     compile('com.squareup.retrofit2:retrofit:2.1.0') {
         // exclude Retrofit’s OkHttp peer-dependency module and define your own module import
         exclude module: 'okhttp'
     }
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.zhy:okhttputils:2.6.2'
 
+    // https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
 }

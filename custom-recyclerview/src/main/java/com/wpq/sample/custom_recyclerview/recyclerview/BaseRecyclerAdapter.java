@@ -59,8 +59,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
             throw new IllegalArgumentException("You must return a right contentView layout resource Id");
         }
         View convertView = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(), parent, false);
-        init(convertView);
         RecyclerViewHolder holder = new RecyclerViewHolder(convertView);
+        init(holder);
         setListeners(holder);
         return holder;
     }
@@ -112,14 +112,16 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     /**
      * 初始化操作，比如设置 LayoutParams
      *
-     * @param convertView 当前itemView
+     * @param viewHolder The ViewHolder which should be updated to represent the contents of the
+     *               item at the given position in the data set.
      */
-    protected abstract void init(View convertView);
+    protected abstract void init(RecyclerViewHolder viewHolder);
 
     /**
      * 设置事件监听和数据
      *
-     * @param viewHolder A ListViewHolder describes an item view and metadata about its place within the ListView|GridView
+     * @param viewHolder The ViewHolder which should be updated to represent the contents of the
+     *               item at the given position in the data set.
      * @param position Position of the item whose data we want within the adapter's data set.
      * @param itemData 数据源
      */
