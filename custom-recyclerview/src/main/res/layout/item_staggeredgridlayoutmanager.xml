@@ -11,4 +11,5 @@
     fresco:roundTopLeft="false"
     fresco:roundTopRight="false"
     fresco:roundedCornerRadius="5dp"
+    android:layout_margin="2dp"
     />
