@@ -1,9 +1,9 @@
 # android-blog-samples
 #### [简书](http://www.jianshu.com/u/fca46862a3b2)博客文章的源码
 ## 文章列表
-* [Android项目实战 EventBus的封装](http://www.jianshu.com/p/bf5c431872bf)
 * [Android项目实战 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803)
 * [Android项目实战 ProgressDialog自定义和封装过程](http://www.jianshu.com/p/3fd52a212c6d)
+* [Android项目实战 EventBus的封装](http://www.jianshu.com/p/bf5c431872bf)
 ## 相关截图
 * [Android 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803) <br/>
 
