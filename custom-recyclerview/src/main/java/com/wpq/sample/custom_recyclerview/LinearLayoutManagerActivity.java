@@ -19,6 +19,7 @@ import com.wpq.sample.custom_recyclerview.api.RetrofitService;
 import com.wpq.sample.custom_recyclerview.bean.GanHuo;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
 import com.wpq.sample.custom_recyclerview.recyclerview.OnRecyclerItemClickListener;
+import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
 import java.util.ArrayList;
 import java.util.List;

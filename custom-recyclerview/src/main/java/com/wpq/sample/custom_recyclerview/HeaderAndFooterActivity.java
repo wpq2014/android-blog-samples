@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.wpq.sample.custom_recyclerview.adapter.HeaderAndFooterAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
 import com.wpq.sample.custom_recyclerview.recyclerview.OnRecyclerItemClickListener;
+import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
 import java.util.ArrayList;
 import java.util.List;

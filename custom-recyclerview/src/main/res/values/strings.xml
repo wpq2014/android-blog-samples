@@ -15,6 +15,7 @@
     <string name="action_settings">设置</string>
     <string name="action_more_than_one_page">一页以上</string>
     <string name="action_not_enough_one_page">不足一页</string>
+    <string name="action_one_page">只有一页</string>
 
     <string-array name="main_item">
         <item>Header And Footer</item>

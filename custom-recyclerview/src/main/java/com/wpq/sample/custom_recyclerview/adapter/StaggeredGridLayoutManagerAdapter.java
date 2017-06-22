@@ -1,11 +1,10 @@
 package com.wpq.sample.custom_recyclerview.adapter;
 
-import android.view.ViewGroup;
-
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.wpq.sample.custom_recyclerview.R;
-import com.wpq.sample.custom_recyclerview.bean.GanHuo;
+import com.wpq.sample.custom_recyclerview.bean.Girl;
 import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
+import com.wpq.sample.custom_recyclerview.util.ImageLoader;
+import com.wpq.sample.custom_recyclerview.widget.ScaledImageView;
 
 import java.util.List;
 
@@ -13,9 +12,9 @@ import java.util.List;
  * @author wpq
  * @version 1.0
  */
-public class StaggeredGridLayoutManagerAdapter extends BaseRecyclerAdapter<GanHuo.Result> {
+public class StaggeredGridLayoutManagerAdapter extends BaseRecyclerAdapter<Girl> {
 
-    public StaggeredGridLayoutManagerAdapter(List<GanHuo.Result> list) {
+    public StaggeredGridLayoutManagerAdapter(List<Girl> list) {
         super(list);
     }
 
@@ -30,12 +29,29 @@ public class StaggeredGridLayoutManagerAdapter extends BaseRecyclerAdapter<GanHu
     }
 
     @Override
-    protected void onBind(RecyclerViewHolder viewHolder, int position, GanHuo.Result itemData) {
-        ViewGroup.LayoutParams lp = viewHolder.itemView.getLayoutParams();
-        lp.height = itemData.getScaledHeight();
-        viewHolder.itemView.setLayoutParams(lp);
-
-        SimpleDraweeView imageView = viewHolder.getView(R.id.imageView);
-        imageView.setImageURI(itemData.getUrl());
+    protected void onBind(RecyclerViewHolder viewHolder, int position, Girl itemData) {
+        ScaledImageView imageView = viewHolder.getView(R.id.imageView);
+//        Log.e("StaggeredAdapter", itemData.getWidth() + ", " + itemData.getHeight());
+        imageView.setOriginalSize(itemData.getWidth(), itemData.getHeight());
+        ImageLoader.load(viewHolder.itemView.getContext(), itemData.getUrl(), imageView);
     }
+
+//    private void loadImage(Context context, final ScaledImageView imageView, final Girl itemData) {
+//        Glide.with(context)
+//                .load(itemData.getUrl())
+//                .asBitmap()
+//                .into(new SimpleTarget<Bitmap>() {
+//                    @Override
+//                    public void onResourceReady(Bitmap bitmap,
+//                                                GlideAnimation<? super Bitmap> glideAnimation) {
+//                        int width = bitmap.getWidth();
+//                        int height = bitmap.getHeight();
+//                        itemData.setWidth(width);
+//                        itemData.setHeight(height);
+//                        imageView.setOriginalSize(width, height);
+//                        imageView.setImageBitmap(bitmap);
+//                    }
+//                });
+//
+//    }
 }

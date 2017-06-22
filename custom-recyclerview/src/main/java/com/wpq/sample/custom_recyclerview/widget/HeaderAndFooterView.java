@@ -1,4 +1,4 @@
-package com.wpq.sample.custom_recyclerview;
+package com.wpq.sample.custom_recyclerview.widget;
 
 import android.content.Context;
 import android.graphics.Color;
