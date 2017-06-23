@@ -58,6 +58,7 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
 
     private int page = 2653; // 当前用的接口最多2655页数据
 
+    private boolean isFirstLoad = true;
     private boolean isRefresh = false;
 
     @Override
@@ -71,8 +72,8 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                page = 1; // 从1开始
                 isRefresh = true;
+                page = isFirstLoad ? 2653 : 1; // 从1开始
                 showTime();
             }
         });
@@ -88,15 +89,12 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
         mRecyclerView.setOnLoadListener(new MyRecyclerView.OnLoadListener() {
             @Override
             public void onLoadMore() {
-                isRefresh = false;
-                showTime();
+                if (!mSwipeRefreshLayout.isRefreshing()) {
+                    isRefresh = false;
+                    showTime();
+                }
             }
         });
-
-        View header0 = new HeaderAndFooterView(this, 0xff235840, "header0");
-        mRecyclerView.addHeaderView(header0);
-        View header1 = new HeaderAndFooterView(this, 0xff840395, "header1");
-        mRecyclerView.addHeaderView(header1);
 
         mAdapter = new StaggeredGridLayoutManagerAdapter(mList);
         mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
@@ -122,6 +120,7 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
         });
         mRecyclerView.setAdapter(mAdapter);
 
+        mSwipeRefreshLayout.setRefreshing(true);
         showTime();
     }
 
@@ -167,11 +166,13 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
             case R.id.action_more_than_one_page: // 一页以上
                 page = 2653;
                 isRefresh = true;
+                mSwipeRefreshLayout.setRefreshing(true);
                 showTime();
                 break;
             case R.id.action_one_page: // 只有一页
                 page = 2655;
                 isRefresh = true;
+                mSwipeRefreshLayout.setRefreshing(true);
                 showTime();
                 break;
         }
@@ -204,6 +205,15 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
         } else {
             mRecyclerView.loadMoreComplete();
             page++;
+        }
+
+        if (isFirstLoad) {
+            mSwipeRefreshLayout.setRefreshing(false);
+            isFirstLoad = false;
+            View header0 = new HeaderAndFooterView(this, 0xff235840, "header0");
+            mRecyclerView.addHeaderView(header0);
+            View header1 = new HeaderAndFooterView(this, 0xff840395, "header1");
+            mRecyclerView.addHeaderView(header1);
         }
     }
 }
