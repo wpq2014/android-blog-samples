@@ -5,6 +5,8 @@
 * [Android项目实战 ProgressDialog自定义和封装过程](http://www.jianshu.com/p/3fd52a212c6d)
 * [Android项目实战 EventBus的封装](http://www.jianshu.com/p/bf5c431872bf)
 ## 相关截图
+* Android RecyclerView加载更多及添加Header和Footer封装过程 <br/>
+
 * [Android 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803) <br/>
 
   <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/single.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/multi.gif" width="320px"/>
