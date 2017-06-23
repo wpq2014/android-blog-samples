@@ -7,8 +7,7 @@
 ## 相关截图
 * Android RecyclerView加载更多及添加Header和Footer <br/>
 
-  <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/HeaderAndFooter.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/LinearLayoutManager.gif" width="320px"/>
-<br/>
+  <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/HeaderAndFooter.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/LinearLayoutManager.gif" width="320px"/> <br/>
   <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/GridLayoutManager.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/StaggeredGridLayoutManager.gif" width="320px"/>
 <br/>
 
