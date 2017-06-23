@@ -6,14 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.wpq.sample.custom_recyclerview.adapter.HeaderAndFooterAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
-import com.wpq.sample.custom_recyclerview.recyclerview.OnRecyclerItemClickListener;
 import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
 import java.util.ArrayList;
@@ -57,18 +54,6 @@ public class HeaderAndFooterActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mRecyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(mRecyclerView) {
-            @Override
-            protected void onItemClick(RecyclerView.ViewHolder viewHolder) {
-                Toast.makeText(HeaderAndFooterActivity.this, "单击 " + viewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            protected void onItemLongClick(RecyclerView.ViewHolder viewHolder) {
-                Toast.makeText(HeaderAndFooterActivity.this, "长按 " + viewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         mAdapter = new HeaderAndFooterAdapter(mData);
         mRecyclerView.setAdapter(mAdapter);

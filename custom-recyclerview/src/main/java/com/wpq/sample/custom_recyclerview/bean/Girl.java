@@ -72,7 +72,7 @@ public class Girl implements Parcelable {
     public Girl() {
     }
 
-    private Girl(Parcel in) {
+    protected Girl(Parcel in) {
         this.title = in.readString();
         this.url = in.readString();
         this.id = in.readString();

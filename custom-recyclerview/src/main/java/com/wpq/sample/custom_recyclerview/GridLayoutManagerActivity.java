@@ -15,9 +15,9 @@ import android.widget.Toast;
 import com.wpq.sample.custom_recyclerview.adapter.GridLayoutManagerAdapter;
 import com.wpq.sample.custom_recyclerview.api.RetrofitService;
 import com.wpq.sample.custom_recyclerview.bean.GanHuo;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.GridSpaceItemDecoration;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
-import com.wpq.sample.custom_recyclerview.recyclerview.OnRecyclerItemClickListener;
 import com.wpq.sample.custom_recyclerview.util.ScreenUtils;
 import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
@@ -86,23 +86,6 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
                 showTime(false);
             }
         });
-        mRecyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(mRecyclerView) {
-            @Override
-            protected void onItemClick(RecyclerView.ViewHolder viewHolder) {
-                int position = viewHolder.getAdapterPosition();
-                try {
-                    GanHuo.Result result = mList.get(position - 2);
-                    Toast.makeText(GridLayoutManagerActivity.this, "单击第" + position + "项：" + result.getDesc(), Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                }
-            }
-
-            @Override
-            protected void onItemLongClick(RecyclerView.ViewHolder viewHolder) {
-                int position = viewHolder.getAdapterPosition();
-                Toast.makeText(GridLayoutManagerActivity.this, "长按 " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         View header0 = new HeaderAndFooterView(this, 0xff235840, "header0");
         mRecyclerView.addHeaderView(header0);
@@ -110,6 +93,27 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
         mRecyclerView.addHeaderView(header1);
 
         mAdapter = new GridLayoutManagerAdapter(mList);
+        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                try {
+                    GanHuo.Result result = mList.get(position - mRecyclerView.getHeadersCount());
+                    Toast.makeText(GridLayoutManagerActivity.this, "单击第 " + position + " 项：" + result.getDesc(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {}
+            }
+        });
+        mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                try {
+                    GanHuo.Result result = mList.get(position - mRecyclerView.getHeadersCount());
+                    Toast.makeText(GridLayoutManagerActivity.this, "长按第 " + position + " 项：" + result.getDesc(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {}
+                return true;
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
 
         showTime(false);

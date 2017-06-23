@@ -43,16 +43,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         mList = list;
     }
 
-    /**
-     * 刷新
-     * @param list
-     */
-    public void update(List<T> list) {
-        if (list == null) return;
-        mList = list;
-        notifyDataSetChanged();
-    }
-
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (0 == getLayoutId()) {

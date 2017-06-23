@@ -7,11 +7,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.wpq.sample.custom_recyclerview.adapter.MainAdapter;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
-import com.wpq.sample.custom_recyclerview.recyclerview.OnRecyclerItemClickListener;
 
 import java.util.Arrays;
 
@@ -40,21 +39,15 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(mRecyclerView) {
-            @Override
-            protected void onItemClick(RecyclerView.ViewHolder viewHolder) {
-                int position = viewHolder.getAdapterPosition();
-//                Toast.makeText(MainActivity.this, "单击 " + position + " " + mArray[position], Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, mClasses[position]));
-            }
-
-            @Override
-            protected void onItemLongClick(RecyclerView.ViewHolder viewHolder) {
-                Toast.makeText(MainActivity.this, "长按 " + viewHolder.getAdapterPosition() + " " + mArray[viewHolder.getAdapterPosition()], Toast.LENGTH_SHORT).show();
-            }
-        });
 
         mAdapter = new MainAdapter(Arrays.asList(mArray));
+        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                startActivity(new Intent(MainActivity.this, mClasses[position]));
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
     }
 

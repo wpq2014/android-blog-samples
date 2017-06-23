@@ -17,8 +17,8 @@ import com.wpq.sample.custom_recyclerview.adapter.StaggeredGridLayoutManagerAdap
 import com.wpq.sample.custom_recyclerview.api.ApiHelper;
 import com.wpq.sample.custom_recyclerview.api.RetrofitService;
 import com.wpq.sample.custom_recyclerview.bean.Girl;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
-import com.wpq.sample.custom_recyclerview.recyclerview.OnRecyclerItemClickListener;
 import com.wpq.sample.custom_recyclerview.service.GirlService;
 import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
@@ -80,13 +80,6 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
         final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         // 解决滚动时item跳动、左右切换的问题
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-//        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//                layoutManager.invalidateSpanAssignments();
-//            }
-//        });
         mRecyclerView.setLayoutManager(layoutManager);
 
 //        mRecyclerView.addItemDecoration(new GridSpaceItemDecoration(2, ScreenUtils.dp2px(this, 3f), false));
@@ -99,23 +92,6 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
                 showTime();
             }
         });
-        mRecyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(mRecyclerView) {
-            @Override
-            protected void onItemClick(RecyclerView.ViewHolder viewHolder) {
-                int position = viewHolder.getAdapterPosition();
-                try {
-                    Girl girl = mList.get(position - 2);
-                    Toast.makeText(StaggeredGridlayoutManagerActivity.this, "单击第" + position + "项：" + girl.getTitle(), Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                }
-            }
-
-            @Override
-            protected void onItemLongClick(RecyclerView.ViewHolder viewHolder) {
-                int position = viewHolder.getAdapterPosition();
-                Toast.makeText(StaggeredGridlayoutManagerActivity.this, "长按 " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         View header0 = new HeaderAndFooterView(this, 0xff235840, "header0");
         mRecyclerView.addHeaderView(header0);
@@ -123,6 +99,27 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
         mRecyclerView.addHeaderView(header1);
 
         mAdapter = new StaggeredGridLayoutManagerAdapter(mList);
+        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                try {
+                    Girl girl = mList.get(position - mRecyclerView.getHeadersCount());
+                    Toast.makeText(StaggeredGridlayoutManagerActivity.this, "单击第 " + position + " 项：" + girl.getTitle(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {}
+            }
+        });
+        mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                try {
+                    Girl girl = mList.get(position - mRecyclerView.getHeadersCount());
+                    Toast.makeText(StaggeredGridlayoutManagerActivity.this, "长按第 " + position + " 项：" + girl.getTitle(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {}
+                return true;
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
 
         showTime();

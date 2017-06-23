@@ -4,13 +4,7 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 
 /**
- * refs : https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/ScreenUtils.java
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/02
- *     desc  : 屏幕相关工具类
- * </pre>
+ *  屏幕相关工具类
  */
 public final class ScreenUtils {
 

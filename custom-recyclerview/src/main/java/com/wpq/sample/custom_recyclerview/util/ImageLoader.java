@@ -9,6 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
 
 /**
+ * refs : https://github.com/Othershe/NiceRead
  * Author: Othershe
  * Time:  2016/8/11 14:47
  */
