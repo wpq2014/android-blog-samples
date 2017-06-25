@@ -1,5 +1,7 @@
 package com.wpq.sample.eventbus;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Button;
@@ -21,6 +23,13 @@ public class TestActivity extends BaseAppCompatActivity {
 
     @BindView(R.id.btn_post)
     Button mBtnPost;
+
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, TestActivity.class);
+        Bundle bundle = new Bundle();
+        intent.putExtras(bundle);
+        return intent;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
