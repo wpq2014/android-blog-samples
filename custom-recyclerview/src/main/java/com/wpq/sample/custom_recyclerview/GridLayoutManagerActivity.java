@@ -31,11 +31,12 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * @author wpq
@@ -129,45 +130,86 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
                 .baseUrl("http://gank.io/")
                 .client(new OkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-
         RetrofitService service = retrofit.create(RetrofitService.class);
-        Call<GanHuo> call = service.getGanHuo("福利", PAGE_COUNT, page);
-        call.enqueue(new Callback<GanHuo>() {
-            @Override
-            public void onResponse(Call<GanHuo> call, Response<GanHuo> response) {
-                Log.e(TAG, response.code() + ", " + response.isSuccessful() + ", " + response.message());
-                if (response.isSuccessful()) {
-                    Log.e(TAG, response.body() + "");
-                    GanHuo ganhuo = response.body();
-
-                    if (isRefresh) {
-                        mPtrFrameLayout.refreshComplete();
-                        mRecyclerView.scrollToPosition(0);
-                        mList.clear();
-                        mAdapter.notifyDataSetChanged();
+        service.getGanHuo("福利", PAGE_COUNT, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<GanHuo>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.e(TAG, "onComplete");
                     }
-                    mList.addAll(ganhuo.getResults());
-//                    mAdapter.notifyDataSetChanged();
-                    mAdapter.notifyItemInserted(mRecyclerView.getHeadersCount() + mList.size());
-//                    mAdapter.notifyItemRangeInserted(mList.size() + mRecyclerView.getHeadersCount(), ganhuo.getResults().size());
-                    if (mList.size() < PAGE_COUNT) {
-                        mRecyclerView.noNeedToLoadMore();
-                    } else if (ganhuo.getResults().size() < PAGE_COUNT) {
-                        mRecyclerView.noMore();
-                    } else {
-                        mRecyclerView.loadMoreComplete();
-                        page++;
-                    }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<GanHuo> call, Throwable t) {
-                Log.e(TAG, t.getMessage());
-                mRecyclerView.loadMoreError();
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError");
+                        mRecyclerView.loadMoreError();
+                    }
+
+                    @Override
+                    public void onNext(GanHuo ganHuo) {
+                        Log.e(TAG, "onNext");
+                        if (ganHuo != null) {
+                            if (isRefresh) {
+                                mPtrFrameLayout.refreshComplete();
+                                mRecyclerView.scrollToPosition(0);
+                                mList.clear();
+                                mAdapter.notifyDataSetChanged();
+                            }
+                            mList.addAll(ganHuo.getResults());
+//                            mAdapter.notifyDataSetChanged();
+                            mAdapter.notifyItemInserted(mRecyclerView.getHeadersCount() + mList.size());
+//                            mAdapter.notifyItemRangeInserted(mRecyclerView.getHeadersCount() + mList.size(), ganhuo.getResults().size());
+                            if (mList.size() < PAGE_COUNT) {
+                                mRecyclerView.noNeedToLoadMore();
+                            } else if (ganHuo.getResults().size() < PAGE_COUNT) {
+                                mRecyclerView.noMore();
+                            } else {
+                                mRecyclerView.loadMoreComplete();
+                                page++;
+                            }
+                        }
+                    }
+                });
+
+//        Call<GanHuo> call = service.getGanHuo("福利", PAGE_COUNT, page);
+//        call.enqueue(new Callback<GanHuo>() {
+//            @Override
+//            public void onResponse(Call<GanHuo> call, Response<GanHuo> response) {
+//                Log.e(TAG, response.code() + ", " + response.isSuccessful() + ", " + response.message());
+//                if (response.isSuccessful()) {
+//                    Log.e(TAG, response.body() + "");
+//                    GanHuo ganhuo = response.body();
+//
+//                    if (isRefresh) {
+//                        mPtrFrameLayout.refreshComplete();
+//                        mRecyclerView.scrollToPosition(0);
+//                        mList.clear();
+//                        mAdapter.notifyDataSetChanged();
+//                    }
+//                    mList.addAll(ganhuo.getResults());
+////                    mAdapter.notifyDataSetChanged();
+//                    mAdapter.notifyItemInserted(mRecyclerView.getHeadersCount() + mList.size());
+////                    mAdapter.notifyItemRangeInserted(mList.size() + mRecyclerView.getHeadersCount(), ganhuo.getResults().size());
+//                    if (mList.size() < PAGE_COUNT) {
+//                        mRecyclerView.noNeedToLoadMore();
+//                    } else if (ganhuo.getResults().size() < PAGE_COUNT) {
+//                        mRecyclerView.noMore();
+//                    } else {
+//                        mRecyclerView.loadMoreComplete();
+//                        page++;
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<GanHuo> call, Throwable t) {
+//                Log.e(TAG, t.getMessage());
+//                mRecyclerView.loadMoreError();
+//            }
+//        });
     }
 
     @Override

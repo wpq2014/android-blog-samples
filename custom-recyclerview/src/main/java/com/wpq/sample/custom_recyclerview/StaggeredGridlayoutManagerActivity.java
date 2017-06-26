@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,11 +33,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * @author wpq
@@ -131,27 +133,52 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
                 .baseUrl("http://www.dbmeinv.com/dbgroup/")
                 .client(new OkHttpClient())
                 .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-
         RetrofitService service = retrofit.create(RetrofitService.class);
-        Call<String> call = service.getGirls("4", page);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Log.e(TAG, response.code() + ", " + response.isSuccessful() + ", " + response.message());
-                if (response.isSuccessful()) {
-//                    Log.e(TAG, response.body() + "");
-                    List<Girl> girls = ApiHelper.parseGirls(response.body());
-                    GirlService.startService(StaggeredGridlayoutManagerActivity.this, girls);
-                }
-            }
+        service.getGirls("4", page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.e(TAG, "onCompleted");
+                    }
 
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.e(TAG, t.getMessage());
-                mRecyclerView.loadMoreError();
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError：" + e.getMessage());
+                        mRecyclerView.loadMoreError();
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Log.e(TAG, "onNext：" + s);
+                        if (!TextUtils.isEmpty(s)) {
+                            List<Girl> girls = ApiHelper.parseGirls(s);
+                            GirlService.startService(StaggeredGridlayoutManagerActivity.this, girls);
+                        }
+                    }
+                });
+
+//        Call<String> call = service.getGirls("4", page);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                Log.e(TAG, response.code() + ", " + response.isSuccessful() + ", " + response.message());
+//                if (response.isSuccessful()) {
+////                    Log.e(TAG, response.body() + "");
+//                    List<Girl> girls = ApiHelper.parseGirls(response.body());
+//                    GirlService.startService(StaggeredGridlayoutManagerActivity.this, girls);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Log.e(TAG, t.getMessage());
+//                mRecyclerView.loadMoreError();
+//            }
+//        });
     }
 
     @Override
