@@ -2,10 +2,10 @@ package com.wpq.sample.custom_recyclerview.api;
 
 import com.wpq.sample.custom_recyclerview.bean.GanHuo;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 public interface RetrofitService {
 

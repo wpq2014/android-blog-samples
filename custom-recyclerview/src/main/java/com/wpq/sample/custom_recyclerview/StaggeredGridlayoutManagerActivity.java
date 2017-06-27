@@ -32,13 +32,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * @author wpq
@@ -133,31 +134,31 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
                 .baseUrl("http://www.dbmeinv.com/dbgroup/")
                 .client(new OkHttpClient())
                 .addConverterFactory(ScalarsConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         RetrofitService service = retrofit.create(RetrofitService.class);
         service.getGirls("4", page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<String>() {
+                .subscribe(new DisposableObserver<String>() {
                     @Override
-                    public void onCompleted() {
-                        Log.e(TAG, "onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e(TAG, "onError：" + e.getMessage());
-                        mRecyclerView.loadMoreError();
-                    }
-
-                    @Override
-                    public void onNext(String s) {
+                    public void onNext(@NonNull String s) {
                         Log.e(TAG, "onNext：" + s);
                         if (!TextUtils.isEmpty(s)) {
                             List<Girl> girls = ApiHelper.parseGirls(s);
                             GirlService.startService(StaggeredGridlayoutManagerActivity.this, girls);
                         }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e(TAG, "onError：" + e.getMessage());
+                        mRecyclerView.loadMoreError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "onCompleted");
                     }
                 });
 

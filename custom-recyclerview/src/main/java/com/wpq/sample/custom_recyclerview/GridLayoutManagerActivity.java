@@ -30,13 +30,14 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * @author wpq
@@ -130,26 +131,15 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
                 .baseUrl("http://gank.io/")
                 .client(new OkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         RetrofitService service = retrofit.create(RetrofitService.class);
         service.getGanHuo("福利", PAGE_COUNT, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<GanHuo>() {
+                .subscribe(new DisposableObserver<GanHuo>() {
                     @Override
-                    public void onCompleted() {
-                        Log.e(TAG, "onComplete");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e(TAG, "onError");
-                        mRecyclerView.loadMoreError();
-                    }
-
-                    @Override
-                    public void onNext(GanHuo ganHuo) {
+                    public void onNext(@NonNull GanHuo ganHuo) {
                         Log.e(TAG, "onNext");
                         if (ganHuo != null) {
                             if (isRefresh) {
@@ -171,6 +161,17 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
                                 page++;
                             }
                         }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e(TAG, "onError");
+                        mRecyclerView.loadMoreError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "onComplete");
                     }
                 });
 
