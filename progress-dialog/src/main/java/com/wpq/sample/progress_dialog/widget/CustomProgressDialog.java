@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,23 +53,26 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
         }
     }
 
-    public static synchronized void showLoading(@NonNull Context context) {
+    public static synchronized void showLoading(Context context) {
         showLoading(context, "loading...");
     }
 
-    public static synchronized void showLoading(@NonNull Context context, CharSequence message) {
+    public static synchronized void showLoading(Context context, CharSequence message) {
         showLoading(context, message, true);
     }
 
-    public static synchronized void showLoading(@NonNull Context context, CharSequence message, boolean cancelable) {
+    public static synchronized void showLoading(Context context, CharSequence message, boolean cancelable) {
         if (sDialog != null && sDialog.isShowing()) {
             sDialog.dismiss();
         }
 
+        if (context == null || !(context instanceof Activity)) {
+            return;
+        }
         sDialog = new CustomProgressDialog(context, message);
         sDialog.setCancelable(cancelable);
 
-        if (sDialog != null && !sDialog.isShowing() && context instanceof Activity && !((Activity) context).isFinishing()) {
+        if (sDialog != null && !sDialog.isShowing() && !((Activity) context).isFinishing()) {
             sDialog.show();
         }
     }
