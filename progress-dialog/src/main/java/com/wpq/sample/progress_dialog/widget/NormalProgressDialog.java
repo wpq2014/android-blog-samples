@@ -20,11 +20,11 @@ public class NormalProgressDialog extends ProgressDialog implements DialogInterf
     private WeakReference<Context> mContext = new WeakReference<>(null);
     private volatile static NormalProgressDialog sDialog;
 
-    private NormalProgressDialog(@NonNull Context context) {
+    private NormalProgressDialog(Context context) {
         this(context, -1);
     }
 
-    private NormalProgressDialog(@NonNull Context context, int theme) {
+    private NormalProgressDialog(Context context, int theme) {
         super(context, theme);
 
         mContext = new WeakReference<>(context);

@@ -27,7 +27,7 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
     private WeakReference<Context> mContext = new WeakReference<>(null);
     private volatile static CustomProgressDialog sDialog;
 
-    private CustomProgressDialog(@NonNull Context context, CharSequence message) {
+    private CustomProgressDialog(Context context, CharSequence message) {
         super(context, R.style.CustomProgressDialog);
 
         mContext = new WeakReference<>(context);
