@@ -1,1 +1,1 @@
-include ':app', ':eventbus', ':loading', ':progress-dialog', ':custom-recyclerview'
+include ':eventbus', ':loading', ':progress-dialog', ':custom-recyclerview'
