@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
     private WeakReference<Context> mContext = new WeakReference<>(null);
     private volatile static CustomProgressDialog sDialog;
 
-    private CustomProgressDialog(Context context, CharSequence message) {
+    private CustomProgressDialog(@NonNull Context context, CharSequence message) {
         super(context, R.style.CustomProgressDialog);
 
         mContext = new WeakReference<>(context);
@@ -53,15 +54,15 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
         }
     }
 
-    public static synchronized void showLoading(Context context) {
+    public static synchronized void showLoading(@NonNull Context context) {
         showLoading(context, "loading...");
     }
 
-    public static synchronized void showLoading(Context context, CharSequence message) {
+    public static synchronized void showLoading(@NonNull Context context, CharSequence message) {
         showLoading(context, message, true);
     }
 
-    public static synchronized void showLoading(Context context, CharSequence message, boolean cancelable) {
+    public static synchronized void showLoading(@NonNull Context context, CharSequence message, boolean cancelable) {
         if (sDialog != null && sDialog.isShowing()) {
             sDialog.dismiss();
         }
@@ -69,7 +70,7 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
         sDialog = new CustomProgressDialog(context, message);
         sDialog.setCancelable(cancelable);
 
-        if (sDialog != null && !sDialog.isShowing() && context != null && !((Activity) context).isFinishing()) {
+        if (sDialog != null && !sDialog.isShowing() && context instanceof Activity && !((Activity) context).isFinishing()) {
             sDialog.show();
         }
     }
