@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.wpq.sample.custom_recyclerview.adapter.LinearLayoutManagerAdapter;
 import com.wpq.sample.custom_recyclerview.api.RetrofitService;
 import com.wpq.sample.custom_recyclerview.bean.GanHuo;
-import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
 import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
@@ -87,7 +87,7 @@ public class LinearLayoutManagerActivity extends AppCompatActivity {
         mRecyclerView.addHeaderView(header1);
 
         mAdapter = new LinearLayoutManagerAdapter(mList);
-        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new BaseSingleViewTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getAdapterPosition();
@@ -97,7 +97,7 @@ public class LinearLayoutManagerActivity extends AppCompatActivity {
                 } catch (Exception e) {}
             }
         });
-        mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
+        mAdapter.setOnItemLongClickListener(new BaseSingleViewTypeAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getAdapterPosition();

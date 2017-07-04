@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.wpq.sample.custom_recyclerview.adapter.GridLayoutManagerAdapter;
 import com.wpq.sample.custom_recyclerview.api.RetrofitService;
 import com.wpq.sample.custom_recyclerview.bean.GanHuo;
-import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.GridSpaceItemDecoration;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
 import com.wpq.sample.custom_recyclerview.util.ScreenUtils;
@@ -95,7 +95,7 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
         mRecyclerView.addHeaderView(header1);
 
         mAdapter = new GridLayoutManagerAdapter(mList);
-        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new BaseSingleViewTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getAdapterPosition();
@@ -105,7 +105,7 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
                 } catch (Exception e) {}
             }
         });
-        mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
+        mAdapter.setOnItemLongClickListener(new BaseSingleViewTypeAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getAdapterPosition();

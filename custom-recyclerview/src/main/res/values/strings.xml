@@ -4,6 +4,7 @@
     <string name="LinearLayoutManager">LinearLayoutManager</string>
     <string name="GridLayoutManager">GridLayoutManager</string>
     <string name="StaggeredGridLayoutManager">StaggeredGridLayoutManager</string>
+    <string name="MultiViewType">MultiViewType</string>
 
     <!-- LoadMoreView -->
     <string name="LoadMoreView_loadingHint">加载中...</string>
@@ -22,6 +23,7 @@
         <item>LinearLayoutManager</item>
         <item>GridLayoutManager</item>
         <item>StaggeredGridLayoutManager</item>
+        <item>MultiViewType</item>
     </string-array>
 
     <!-- header and footer -->

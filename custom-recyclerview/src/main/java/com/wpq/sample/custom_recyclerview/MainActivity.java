@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.wpq.sample.custom_recyclerview.adapter.MainAdapter;
-import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
 
 import java.util.Arrays;
@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     @BindArray(R.array.main_item)
     String[] mArray;
 
-    private Class<?>[] mClasses = {HeaderAndFooterActivity.class, LinearLayoutManagerActivity.class, GridLayoutManagerActivity.class, StaggeredGridlayoutManagerActivity.class};
+    private Class<?>[] mClasses = {HeaderAndFooterActivity.class, LinearLayoutManagerActivity.class, GridLayoutManagerActivity.class,
+            StaggeredGridlayoutManagerActivity.class, MultiViewTypeActivity.class};
 
     private MainAdapter mAdapter;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         mAdapter = new MainAdapter(Arrays.asList(mArray));
-        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new BaseSingleViewTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getAdapterPosition();

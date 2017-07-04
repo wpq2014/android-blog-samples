@@ -12,7 +12,7 @@ import java.util.List;
  * @author wpq
  * @version 1.0
  */
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.RecyclerViewHolder>{
+public abstract class BaseSingleViewTypeAdapter<T> extends RecyclerView.Adapter<BaseSingleViewTypeAdapter.RecyclerViewHolder>{
 
     private List<T> mList;
     private OnItemClickListener mOnItemClickListener;
@@ -39,7 +39,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
 
     }
 
-    public BaseRecyclerAdapter(List<T> list) {
+    public BaseSingleViewTypeAdapter(List<T> list) {
         mList = list;
     }
 

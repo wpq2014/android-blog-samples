@@ -2,7 +2,7 @@ package com.wpq.sample.custom_recyclerview.adapter;
 
 import com.wpq.sample.custom_recyclerview.R;
 import com.wpq.sample.custom_recyclerview.bean.Girl;
-import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
 import com.wpq.sample.custom_recyclerview.util.ImageLoader;
 import com.wpq.sample.custom_recyclerview.widget.ScaledImageView;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @author wpq
  * @version 1.0
  */
-public class StaggeredGridLayoutManagerAdapter extends BaseRecyclerAdapter<Girl> {
+public class StaggeredGridLayoutManagerAdapter extends BaseSingleViewTypeAdapter<Girl> {
 
     public StaggeredGridLayoutManagerAdapter(List<Girl> list) {
         super(list);

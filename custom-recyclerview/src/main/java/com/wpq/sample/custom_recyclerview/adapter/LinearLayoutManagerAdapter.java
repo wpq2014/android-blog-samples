@@ -5,11 +5,11 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wpq.sample.custom_recyclerview.R;
 import com.wpq.sample.custom_recyclerview.bean.GanHuo;
-import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
 
 import java.util.List;
 
-public class LinearLayoutManagerAdapter extends BaseRecyclerAdapter<GanHuo.Result> {
+public class LinearLayoutManagerAdapter extends BaseSingleViewTypeAdapter<GanHuo.Result> {
 
     public LinearLayoutManagerAdapter(List<GanHuo.Result> list) {
         super(list);

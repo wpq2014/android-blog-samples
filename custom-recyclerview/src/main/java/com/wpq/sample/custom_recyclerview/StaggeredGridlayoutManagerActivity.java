@@ -18,7 +18,7 @@ import com.wpq.sample.custom_recyclerview.adapter.StaggeredGridLayoutManagerAdap
 import com.wpq.sample.custom_recyclerview.api.ApiHelper;
 import com.wpq.sample.custom_recyclerview.api.RetrofitService;
 import com.wpq.sample.custom_recyclerview.bean.Girl;
-import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
 import com.wpq.sample.custom_recyclerview.service.GirlService;
 import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
@@ -100,7 +100,7 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
         });
 
         mAdapter = new StaggeredGridLayoutManagerAdapter(mList);
-        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new BaseSingleViewTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getAdapterPosition();
@@ -110,7 +110,7 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
                 } catch (Exception e) {}
             }
         });
-        mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
+        mAdapter.setOnItemLongClickListener(new BaseSingleViewTypeAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(RecyclerView.ViewHolder viewHolder) {
                 int position = viewHolder.getAdapterPosition();

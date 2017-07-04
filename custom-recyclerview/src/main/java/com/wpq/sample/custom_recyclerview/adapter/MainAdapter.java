@@ -3,11 +3,11 @@ package com.wpq.sample.custom_recyclerview.adapter;
 import android.widget.TextView;
 
 import com.wpq.sample.custom_recyclerview.R;
-import com.wpq.sample.custom_recyclerview.recyclerview.BaseRecyclerAdapter;
+import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
 
 import java.util.List;
 
-public class MainAdapter extends BaseRecyclerAdapter<String> {
+public class MainAdapter extends BaseSingleViewTypeAdapter<String> {
 
         public MainAdapter(List<String> list) {
             super(list);
