@@ -8,9 +8,8 @@
 * Android RecyclerView加载更多及添加Header和Footer &nbsp;[DemoApk下载](https://fir.im/7k3w?release_id=595b57e5ca87a84d87000562) <br/>
 
   <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/HeaderAndFooter.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/LinearLayoutManager.gif" width="320px"/> <br/>
-  <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/GridLayoutManager.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/StaggeredGridLayoutManager.gif" width="320px"/>
-<br/>
-    <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/MultiViewType.gif" width="320px"/> <br/>
+  <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/GridLayoutManager.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/StaggeredGridLayoutManager.gif" width="320px"/> <br/>
+  <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/MultiViewType.gif" width="320px"/> <br/>
 
 * [Android 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803) <br/>
 
