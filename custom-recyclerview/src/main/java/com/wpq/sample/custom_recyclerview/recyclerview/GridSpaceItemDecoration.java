@@ -7,17 +7,17 @@ import android.view.View;
 
 public class GridSpaceItemDecoration extends RecyclerView.ItemDecoration {
 
-    private MyRecyclerView myRecyclerView;
+    private LoadMoreRecyclerView myRecyclerView;
     private int spanCount;
     private int space;
     private boolean includeEdge;
 
     /**
-     * @param myRecyclerView {@link MyRecyclerView}
+     * @param myRecyclerView {@link LoadMoreRecyclerView}
      * @param space 分割线宽度
      * @param includeEdge 屏幕所有两边是否需要画分割线
      */
-    public GridSpaceItemDecoration(MyRecyclerView myRecyclerView, int space, boolean includeEdge) {
+    public GridSpaceItemDecoration(LoadMoreRecyclerView myRecyclerView, int space, boolean includeEdge) {
         this.myRecyclerView = myRecyclerView;
         RecyclerView.LayoutManager layoutManager = myRecyclerView.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {

@@ -17,7 +17,7 @@ import com.wpq.sample.custom_recyclerview.api.RetrofitService;
 import com.wpq.sample.custom_recyclerview.bean.GanHuo;
 import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.GridSpaceItemDecoration;
-import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
+import com.wpq.sample.custom_recyclerview.recyclerview.LoadMoreRecyclerView;
 import com.wpq.sample.custom_recyclerview.util.ScreenUtils;
 import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
@@ -52,7 +52,7 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
     @BindView(R.id.ptrFrameLayout)
     PtrClassicFrameLayout mPtrFrameLayout;
     @BindView(R.id.recyclerView)
-    MyRecyclerView mRecyclerView;
+    LoadMoreRecyclerView mRecyclerView;
 
     private GridLayoutManagerAdapter mAdapter;
     private List<GanHuo.Result> mList = new ArrayList<>();
@@ -82,7 +82,7 @@ public class GridLayoutManagerActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(new GridSpaceItemDecoration(mRecyclerView, ScreenUtils.dp2px(this, 3f), false));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLoadMoreEnabled(true);
-        mRecyclerView.setOnLoadListener(new MyRecyclerView.OnLoadListener() {
+        mRecyclerView.setOnLoadListener(new LoadMoreRecyclerView.OnLoadListener() {
             @Override
             public void onLoadMore() {
                 showTime(false);

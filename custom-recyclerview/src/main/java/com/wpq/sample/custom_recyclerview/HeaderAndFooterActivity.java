@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.wpq.sample.custom_recyclerview.adapter.HeaderAndFooterAdapter;
-import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
+import com.wpq.sample.custom_recyclerview.recyclerview.LoadMoreRecyclerView;
 import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import butterknife.OnClick;
 public class HeaderAndFooterActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
-    MyRecyclerView mRecyclerView;
+    LoadMoreRecyclerView mRecyclerView;
     @BindView(R.id.btn_addHeader)
     Button mBtnAddHeader;
     @BindView(R.id.btn_addFooter)

@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.wpq.sample.custom_recyclerview.adapter.MainAdapter;
 import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
-import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
+import com.wpq.sample.custom_recyclerview.recyclerview.LoadMoreRecyclerView;
 
 import java.util.Arrays;
 
@@ -21,13 +21,13 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
-    MyRecyclerView mRecyclerView;
+    LoadMoreRecyclerView mRecyclerView;
 
     @BindArray(R.array.main_item)
     String[] mArray;
 
     private Class<?>[] mClasses = {HeaderAndFooterActivity.class, LinearLayoutManagerActivity.class, GridLayoutManagerActivity.class,
-            StaggeredGridlayoutManagerActivity.class, MultiViewTypeActivity.class};
+            StaggeredGridlayoutManagerActivity.class, MultiViewTypeActivity1.class, MultiViewTypeActivity2.class};
 
     private MainAdapter mAdapter;
 

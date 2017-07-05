@@ -19,7 +19,7 @@ import com.wpq.sample.custom_recyclerview.api.ApiHelper;
 import com.wpq.sample.custom_recyclerview.api.RetrofitService;
 import com.wpq.sample.custom_recyclerview.bean.Girl;
 import com.wpq.sample.custom_recyclerview.recyclerview.BaseSingleViewTypeAdapter;
-import com.wpq.sample.custom_recyclerview.recyclerview.MyRecyclerView;
+import com.wpq.sample.custom_recyclerview.recyclerview.LoadMoreRecyclerView;
 import com.wpq.sample.custom_recyclerview.service.GirlService;
 import com.wpq.sample.custom_recyclerview.widget.HeaderAndFooterView;
 
@@ -54,7 +54,7 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.recyclerView)
-    MyRecyclerView mRecyclerView;
+    LoadMoreRecyclerView mRecyclerView;
 
     private StaggeredGridLayoutManagerAdapter mAdapter;
     private List<Girl> mList = new ArrayList<>();
@@ -89,7 +89,7 @@ public class StaggeredGridlayoutManagerActivity extends AppCompatActivity {
 //        mRecyclerView.addItemDecoration(new GridSpaceItemDecoration(2, ScreenUtils.dp2px(this, 3f), false));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLoadMoreEnabled(true);
-        mRecyclerView.setOnLoadListener(new MyRecyclerView.OnLoadListener() {
+        mRecyclerView.setOnLoadListener(new LoadMoreRecyclerView.OnLoadListener() {
             @Override
             public void onLoadMore() {
                 if (!mSwipeRefreshLayout.isRefreshing()) {

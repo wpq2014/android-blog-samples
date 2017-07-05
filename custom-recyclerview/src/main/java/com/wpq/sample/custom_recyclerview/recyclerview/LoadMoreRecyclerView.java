@@ -16,9 +16,9 @@ import android.view.ViewGroup;
  * @author wpq
  * @version 1.0
  */
-public class MyRecyclerView extends RecyclerView {
+public class LoadMoreRecyclerView extends RecyclerView {
 
-    public static final String TAG = MyRecyclerView.class.getSimpleName();
+    public static final String TAG = LoadMoreRecyclerView.class.getSimpleName();
 
     /** headers viewType，取值较大，避免跟数据区域的viewType重复，如有重复则需调整 */
     private static final int VIEW_TYPE_HEADER_INIT = 100001;
@@ -40,15 +40,15 @@ public class MyRecyclerView extends RecyclerView {
     /** 分页加载时，总数据不满一页，则不需要分页 */
     private boolean noNeedToLoadMore = true;
 
-    public MyRecyclerView(Context context) {
+    public LoadMoreRecyclerView(Context context) {
         this(context, null);
     }
 
-    public MyRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public LoadMoreRecyclerView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MyRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public LoadMoreRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

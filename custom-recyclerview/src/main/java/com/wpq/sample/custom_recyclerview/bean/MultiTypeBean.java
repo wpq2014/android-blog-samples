@@ -6,6 +6,8 @@ package com.wpq.sample.custom_recyclerview.bean;
  */
 public class MultiTypeBean {
 
+    /** 测试用 */
+    public static final int TYPE_EMPTY = -1;
     public static final int TYPE_DATE = 0;
     public static final int TYPE_LEFT = 1;
     public static final int TYPE_RIGHT = 2;

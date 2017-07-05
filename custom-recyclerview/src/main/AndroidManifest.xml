@@ -23,7 +23,8 @@
         <activity android:name=".LinearLayoutManagerActivity" android:label="@string/LinearLayoutManager"/>
         <activity android:name=".GridLayoutManagerActivity" android:label="@string/GridLayoutManager"/>
         <activity android:name=".StaggeredGridlayoutManagerActivity" android:label="@string/StaggeredGridLayoutManager"/>
-        <activity android:name=".MultiViewTypeActivity" android:label="@string/MultiViewType"/>
+        <activity android:name=".MultiViewTypeActivity1" android:label="@string/MultiViewType1"/>
+        <activity android:name=".MultiViewTypeActivity2" android:label="@string/MultiViewType2"/>
 
         <service android:name=".service.GirlService"/>
     </application>
