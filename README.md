@@ -5,7 +5,7 @@
 * [Android项目实战 ProgressDialog自定义和封装过程](http://www.jianshu.com/p/3fd52a212c6d)
 * [Android项目实战 EventBus的封装](http://www.jianshu.com/p/bf5c431872bf)
 ## 相关截图
-* [Android 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803) <br/>
+* [Android项目实战 加载数据时页面状态切换封装过程](http://www.jianshu.com/p/739237652803) <br/>
 
   <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/single.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/multi.gif" width="320px"/>
 <br/>
@@ -16,7 +16,7 @@
   <img src="https://github.com/wpq2014/android-blog-samples/blob/master/images/自定义ProgressDialog.gif" width="320px"/>
 <br/>
 
-* [Android RecyclerView加载更多及添加Header和Footer](https://github.com/wpq2014/LoadMoreRecyclerView) <br/>
+* [Android项目实战 RecyclerView加载更多及添加Header和Footer](https://github.com/wpq2014/LoadMoreRecyclerView) <br/>
 
   <img src="https://github.com/wpq2014/LoadMoreRecyclerView/blob/master/images/HeaderAndFooter.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/LoadMoreRecyclerView/blob/master/images/LinearLayoutManager.gif" width="320px"/> <br/><br/>
   <img src="https://github.com/wpq2014/LoadMoreRecyclerView/blob/master/images/GridLayoutManager.gif" width="320px"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wpq2014/LoadMoreRecyclerView/blob/master/images/StaggeredGridLayoutManager.gif" width="320px"/> <br/><br/>
