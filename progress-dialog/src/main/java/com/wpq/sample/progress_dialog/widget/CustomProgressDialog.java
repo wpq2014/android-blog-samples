@@ -23,13 +23,13 @@ import java.lang.ref.WeakReference;
  */
 public class CustomProgressDialog extends Dialog implements DialogInterface.OnCancelListener {
 
-    private WeakReference<Context> mContext = new WeakReference<>(null);
+    private WeakReference<Context> mContextRef = new WeakReference<>(null);
     private volatile static CustomProgressDialog sDialog;
 
     private CustomProgressDialog(Context context, CharSequence message) {
         super(context, R.style.CustomProgressDialog);
 
-        mContext = new WeakReference<>(context);
+        mContextRef = new WeakReference<>(context);
 
         @SuppressLint("InflateParams")
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_custom_progress, null);
@@ -46,7 +46,7 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
     @Override
     public void onCancel(DialogInterface dialog) {
         // 点手机返回键等触发Dialog消失，应该取消正在进行的网络请求等
-        Context context = mContext.get();
+        Context context = mContextRef.get();
         if (context != null) {
             Toast.makeText(context, "cancel", Toast.LENGTH_SHORT).show();
             MyHttpClient.cancelRequests(context);

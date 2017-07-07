@@ -16,7 +16,7 @@ import java.lang.ref.WeakReference;
  */
 public class NormalProgressDialog extends ProgressDialog implements DialogInterface.OnCancelListener {
 
-    private WeakReference<Context> mContext = new WeakReference<>(null);
+    private WeakReference<Context> mContextRef = new WeakReference<>(null);
     private volatile static NormalProgressDialog sDialog;
 
     private NormalProgressDialog(Context context) {
@@ -26,14 +26,14 @@ public class NormalProgressDialog extends ProgressDialog implements DialogInterf
     private NormalProgressDialog(Context context, int theme) {
         super(context, theme);
 
-        mContext = new WeakReference<>(context);
+        mContextRef = new WeakReference<>(context);
         setOnCancelListener(this);
     }
 
     @Override
     public void onCancel(DialogInterface dialog) {
         // 点手机返回键等触发Dialog消失，应该取消正在进行的网络请求等
-        Context context = mContext.get();
+        Context context = mContextRef.get();
         if (context != null) {
             Toast.makeText(context, "cancel", Toast.LENGTH_SHORT).show();
             MyHttpClient.cancelRequests(context);
