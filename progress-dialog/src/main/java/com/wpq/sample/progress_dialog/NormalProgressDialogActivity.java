@@ -37,12 +37,12 @@ public class NormalProgressDialogActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_show)
     public void onViewClicked() {
-        NormalProgressDialog.showLoading(this, "加载中...", false);
+        NormalProgressDialog.show(this, "加载中...", false);
         // 4s后dismiss
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                NormalProgressDialog.stopLoading();
+                NormalProgressDialog.stop();
             }
         }, 4000);
 
@@ -50,14 +50,14 @@ public class NormalProgressDialogActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                NormalProgressDialog.showLoading(NormalProgressDialogActivity.this, "loading...");
+                NormalProgressDialog.show(NormalProgressDialogActivity.this, "loading...");
             }
         }, 1500);
         // 3s时调一下
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                NormalProgressDialog.stopLoading();
+                NormalProgressDialog.stop();
             }
         }, 3000);
     }

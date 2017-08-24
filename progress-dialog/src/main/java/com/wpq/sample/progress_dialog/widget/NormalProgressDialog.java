@@ -40,15 +40,15 @@ public class NormalProgressDialog extends ProgressDialog implements DialogInterf
         }
     }
 
-    public static void showLoading(Context context) {
-        showLoading(context, "loading...");
+    public static void show(Context context) {
+        show(context, "loading...");
     }
 
-    public static void showLoading(Context context, CharSequence message) {
-        showLoading(context, message, true);
+    public static void show(Context context, CharSequence message) {
+        show(context, message, true);
     }
 
-    public static void showLoading(Context context, CharSequence message, boolean cancelable) {
+    public static void show(Context context, CharSequence message, boolean cancelable) {
         if (sDialog != null && sDialog.isShowing()) {
             sDialog.dismiss();
         }
@@ -65,7 +65,7 @@ public class NormalProgressDialog extends ProgressDialog implements DialogInterf
         }
     }
 
-    public static void stopLoading() {
+    public static void stop() {
         if (sDialog != null && sDialog.isShowing()) {
             sDialog.dismiss();
         }

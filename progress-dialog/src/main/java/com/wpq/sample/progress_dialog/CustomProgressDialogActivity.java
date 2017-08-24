@@ -37,12 +37,12 @@ public class CustomProgressDialogActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_show)
     public void onViewClicked() {
-        CustomProgressDialog.showLoading(this, "加载中...", false);
+        CustomProgressDialog.show(this, "加载中...", false);
         // 4s后dismiss
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                CustomProgressDialog.stopLoading();
+                CustomProgressDialog.stop();
             }
         }, 4000);
 
@@ -50,14 +50,14 @@ public class CustomProgressDialogActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                CustomProgressDialog.showLoading(CustomProgressDialogActivity.this, "loading...");
+                CustomProgressDialog.show(CustomProgressDialogActivity.this, "loading...");
             }
         }, 1500);
         // 3s时调一下
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                CustomProgressDialog.stopLoading();
+                CustomProgressDialog.stop();
             }
         }, 3000);
     }
