@@ -53,15 +53,15 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
         }
     }
 
-    public static synchronized void showLoading(Context context) {
+    public static void showLoading(Context context) {
         showLoading(context, "loading...");
     }
 
-    public static synchronized void showLoading(Context context, CharSequence message) {
+    public static void showLoading(Context context, CharSequence message) {
         showLoading(context, message, true);
     }
 
-    public static synchronized void showLoading(Context context, CharSequence message, boolean cancelable) {
+    public static void showLoading(Context context, CharSequence message, boolean cancelable) {
         if (sDialog != null && sDialog.isShowing()) {
             sDialog.dismiss();
         }
@@ -69,6 +69,7 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
         if (context == null || !(context instanceof Activity)) {
             return;
         }
+
         sDialog = new CustomProgressDialog(context, message);
         sDialog.setCancelable(cancelable);
 
@@ -77,7 +78,7 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
         }
     }
 
-    public static synchronized void stopLoading() {
+    public static void stopLoading() {
         if (sDialog != null && sDialog.isShowing()) {
             sDialog.dismiss();
         }
